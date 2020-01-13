@@ -1,6 +1,6 @@
 #include "absl/flags/flag.h"
 #include "absl/flags/parse.h"
-#include "absl/time/time.h"
+#include "absl/strings/str_format.h"
 
 #include <iostream>
 #include <vector>
@@ -13,7 +13,7 @@ ABSL_FLAG(std::vector<std::string>, recepients,
 int main(int argc, char* argv[]) {
   absl::ParseCommandLine(argc, argv);
   for (const auto& recepient : FLAGS_recepients.Get()) {
-    std::cout << FLAGS_message.Get() << " " << recepient << std::endl;
+    absl::PrintF("%s %s!\n", FLAGS_message.Get(), recepient);
   }
   return 0;
 }
